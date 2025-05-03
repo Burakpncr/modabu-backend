@@ -15,7 +15,7 @@ namespace WebAPI.Controllers
         {
             _productService = productService;
         }
-
+        // Dummy update for redeploy
 
         [HttpGet]
         public List<Product> Get() 
