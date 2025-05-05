@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Entities.Concrete;
+using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,14 +13,13 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                var connectionString = "Server=tcp:modabusqlserver.database.windows.net,1433;Initial Catalog=ModaBuDb01;Persist Security Info=False;User ID=sqladmin;Password=Bu.05.rak35;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-                optionsBuilder.UseSqlServer(connectionString);
-            }
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=ModaBu;Trusted_Connection=true");
         }
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<OperationClaim> OperationClaims { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
 
     }
 }

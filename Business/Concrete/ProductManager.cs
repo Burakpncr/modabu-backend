@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
+using Business.CCS;
 using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -19,6 +21,7 @@ namespace Business.Concrete
         {
             _productDal = productDal;
         }
+       [SecuredOperation("product.add,admin")]
         public IResult Add(Product product)
         {
             _productDal.Add(product);
