@@ -41,6 +41,12 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("test")]
+        public IActionResult Testet()
+        {
+            return Ok("oldu");
+        }
+
         [HttpPost]
         public IActionResult Add(Product product)
         {
