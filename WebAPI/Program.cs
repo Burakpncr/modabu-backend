@@ -23,6 +23,8 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 });
 
 // Add services to the container.
+var cs = builder.Configuration.GetConnectionString("DefaultConnection");
+Console.WriteLine(">>> DefaultConnection: " + (string.IsNullOrWhiteSpace(cs) ? "<null veya boþ!>" : cs));
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<ModaBuContext>(options =>

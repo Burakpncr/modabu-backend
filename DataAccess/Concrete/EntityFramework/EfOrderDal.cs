@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfProductDal : EfEntityRepositoryBase<Product, ModaBuContext>, IProductDal
+    public class EfOrderDal : EfEntityRepositoryBase<Order, ModaBuContext>, IOrderDal
     {
-        public EfProductDal(ModaBuContext context)
-           : base(context)
+        public EfOrderDal(ModaBuContext context)
+            : base(context)
         {
 
         }

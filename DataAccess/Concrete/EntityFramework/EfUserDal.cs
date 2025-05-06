@@ -11,6 +11,11 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfUserDal : EfEntityRepositoryBase<User, ModaBuContext>, IUserDal
     {
+        public EfUserDal(ModaBuContext context)
+           : base(context)
+        {
+
+        }
         public List<OperationClaim> GetClaims(User user)
         {
             using (var context = new ModaBuContext())
