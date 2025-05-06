@@ -27,6 +27,16 @@ var cs = builder.Configuration.GetConnectionString("DefaultConnection");
 Console.WriteLine(">>> DefaultConnection: " + (string.IsNullOrWhiteSpace(cs) ? "<null veya boþ!>" : cs));
 
 builder.Services.AddControllers();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowLocalhost", builder =>
+    {
+        builder.WithOrigins("http://localhost:5173") // Buraya React uygulamanýn adresini yaz
+               .AllowAnyHeader()
+               .AllowAnyMethod()
+               .AllowCredentials(); // Eðer JWT, cookie, vs. varsa
+    });
+});
 builder.Services.AddDbContext<ModaBuContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -72,6 +82,8 @@ if (app.Environment.IsDevelopment())
 }   
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowLocalhost");
 
 app.UseAuthentication();
 
