@@ -21,25 +21,6 @@ namespace DataAccess.Concrete.EntityFramework
         }
 
         // 3) Parametresiz kullanım için OnConfiguring’i geri ekle
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                // appsettings.json’dan veya ENV’den oku
-                var config = new ConfigurationBuilder()
-                    .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                    .AddEnvironmentVariables()
-                    .Build();
-
-                var cs = config.GetConnectionString("DefaultConnection");
-                if (!string.IsNullOrWhiteSpace(cs))
-                {
-                    optionsBuilder.UseSqlServer(cs);
-                }
-                // yoksa istersen burada sabit bir connection string de koyabilirsin
-            }
-        }
 
         // -- DbSet’lerin
         public DbSet<Product> Products { get; set; }
