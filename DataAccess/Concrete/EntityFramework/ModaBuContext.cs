@@ -1,4 +1,4 @@
-﻿using Core.Entities.Concrete;
+using Core.Entities.Concrete;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -20,7 +20,14 @@ namespace DataAccess.Concrete.EntityFramework
         {
         }
 
-        // 3) Parametresiz kullanım için OnConfiguring’i geri ekle
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                // Connection string’i kendi veritabanına göre düzenle
+                optionsBuilder.UseSqlServer("Server=ne-az-sql-serv1.database.windows.net;Database=dil0glf76tdlc45;User Id=u70iz5hhyrtvxfx;Password=pvMUQWaybG$2jFLKnwNU4yk7!;");
+            }
+        }
 
         // -- DbSet’lerin
         public DbSet<Product> Products { get; set; }
