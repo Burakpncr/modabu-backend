@@ -49,9 +49,19 @@ namespace Core.DataAccess.EntityFramework
 
         public void Update(TEntity entity)
         {
-            var updatedEntity = _context.Entry(entity);
-            updatedEntity.State = EntityState.Modified;
+            var entry = _context.Entry(entity);
+
+            foreach (var property in entry.Properties)
+            {
+                if (!property.Metadata.IsPrimaryKey()) // 👈 sadece primary key dışında kalanları güncelle
+                {
+                    property.IsModified = true;
+                }
+            }
+
             _context.SaveChanges();
         }
+
+
     }
 }
