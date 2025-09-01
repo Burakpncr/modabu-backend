@@ -24,8 +24,7 @@ namespace DataAccess.Concrete.EntityFramework
         {
             if (!optionsBuilder.IsConfigured)
             {
-                // Connection string’i kendi veritabanına göre düzenle
-                optionsBuilder.UseSqlServer("Server=ne-az-sql-serv1.database.windows.net;Database=dil0glf76tdlc45;User Id=u70iz5hhyrtvxfx;Password=pvMUQWaybG$2jFLKnwNU4yk7!;");
+                optionsBuilder.UseSqlServer("");
             }
         }
 
